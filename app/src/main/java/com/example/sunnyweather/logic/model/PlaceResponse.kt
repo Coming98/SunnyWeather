@@ -9,4 +9,4 @@ data class Location(val lng: String, val lat: String)
 // 即 Json 中的 formatted_address 字段对应着 kotlin 数据对象的 address 属性
 data class Place(val name: String, val location: Location, @SerializedName("formatted_address") val address: String)
 
-data class PlaceResource(val status: String, val places: List<Place>)
+data class PlaceResponse(val status: String, val places: List<Place>)
