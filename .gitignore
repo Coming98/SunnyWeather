@@ -1,7 +1,7 @@
 # Customer
 
-.history/
-.idea/
+/.history/*
+/.idea/*
 
 
 # Built application files
