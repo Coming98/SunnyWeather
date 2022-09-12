@@ -41,3 +41,4 @@ The android practice project in "First Line of Android" of Chapter 15.
 # Process
 
 1. 分层架构下构建全局 Context 引用
+2. 定义数据模型
