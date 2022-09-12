@@ -9,11 +9,13 @@ class SunnyWeatherApplication: Application() {
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
+        lateinit var CY_TOKEN: String
     }
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        CY_TOKEN = R.string.cy_token.toString()
     }
 
 }
