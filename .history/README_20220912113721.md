@@ -1,0 +1,2 @@
+# SunnyWeather
+The android practice project in "First Line of Android" of Chapter 15.
