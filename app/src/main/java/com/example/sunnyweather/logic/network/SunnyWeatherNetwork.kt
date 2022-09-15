@@ -13,9 +13,15 @@ object SunnyWeatherNetwork {
 
     // 创建 PlaceService 这个接口的动态代理对象
     private val placeService = ServiceCreator.create<PlaceService>()
+    private val weatherService = ServiceCreator.create(WeatherService::class.java)
 
     // 发起搜索城市数据的请求
     suspend fun searchPlaces(query: String) = placeService.searchPlaces(query).await()
+
+    // 发起城市天气数据请求
+    suspend fun getRealtimeWeather(lng: String, lat: String) = weatherService.getRealtimeWeather(lng, lat).await()
+    suspend fun getDailyWeather(lng: String, lat: String) = weatherService.getDailyWeather(lng, lat).await()
+
 
     private suspend fun <T> Call<T>.await(): T {
         return suspendCoroutine { continuation ->

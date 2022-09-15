@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 
-class SunnyWeatherApplication: Application() {
+class SunnyWeatherApplication_Template: Application() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
         lateinit var context: Context
-        const val CY_TOKEN = R.string.cy_token.toString()
+        const val CY_TOKEN: String = "<CaiYun Token>"
     }
 
     override fun onCreate() {

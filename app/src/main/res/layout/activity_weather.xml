@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--将界面的不同部分写在不同的布局文件里面，再通过引入布局的方式集成到
+activity_weather.xml中，这样整个布局文件就会显得更加工整-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/weatherLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:overScrollMode="never"
+    android:visibility="invisible">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/now" />
+        <include layout="@layout/forecast" />
+        <include layout="@layout/life_index" />
+    </LinearLayout>
+</ScrollView>

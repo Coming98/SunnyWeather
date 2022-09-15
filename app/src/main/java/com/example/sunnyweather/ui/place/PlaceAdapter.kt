@@ -7,9 +7,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sunnyweather.R
-import com.example.sunnyweather.logic.model.Place
+import com.example.sunnyweather.logic.model.PlaceResponse
+import com.example.sunnyweather.ui.weather.WeatherActivity
 
-class PlaceAdapter(private val fragment: Fragment, private val placeList: List<Place>): RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
+class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: List<PlaceResponse.Place>): RecyclerView.Adapter<PlaceAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val placeName: TextView = view.findViewById(R.id.placeName)
@@ -19,6 +20,15 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.place_item, parent, false)
         val holder = ViewHolder(view)
+
+        holder.itemView.setOnClickListener {
+            val position = holder.adapterPosition
+            val place = placeList[position]
+            fragment.viewModel.savePlace(place)
+            WeatherActivity.actionStart(parent.context, fragment, place.location.lng, place.location.lat, place.name)
+            fragment.activity?.finish()
+        }
+
         return holder
 
     }
@@ -26,8 +36,8 @@ class PlaceAdapter(private val fragment: Fragment, private val placeList: List<P
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val place = placeList[position]
-        holder.placeName.text = place.name.toString()
-        holder.placeAddress.text = place.address.toString()
+        holder.placeName.text = place.name
+        holder.placeAddress.text = place.address
 
     }
 
