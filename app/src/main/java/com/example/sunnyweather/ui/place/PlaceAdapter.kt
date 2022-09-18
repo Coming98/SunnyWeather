@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sunnyweather.MainActivity
 import com.example.sunnyweather.R
 import com.example.sunnyweather.logic.model.PlaceResponse
 import com.example.sunnyweather.ui.weather.WeatherActivity
@@ -24,9 +25,18 @@ class PlaceAdapter(private val fragment: PlaceFragment, private val placeList: L
         holder.itemView.setOnClickListener {
             val position = holder.adapterPosition
             val place = placeList[position]
+            val activity = fragment.activity
+            if (activity is WeatherActivity) {
+                activity.drawerLayout.closeDrawers()
+                activity.viewModel.locationLng = place.location.lng
+                activity.viewModel.locationLat = place.location.lat
+                activity.viewModel.placeName = place.name
+                activity.refreshWeather()
+            } else {
+                WeatherActivity.actionStart(parent.context, fragment, place.location.lng, place.location.lat, place.name)
+                fragment.activity?.finish()
+            }
             fragment.viewModel.savePlace(place)
-            WeatherActivity.actionStart(parent.context, fragment, place.location.lng, place.location.lat, place.name)
-            fragment.activity?.finish()
         }
 
         return holder

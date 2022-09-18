@@ -66,7 +66,7 @@ The android practice project in "First Line of Android" of Chapter 15.
 3. ui/place/placeAdapter: 定义 RecyclerView 的 adapter
 4. ui/place/placeFragment: 实现对 Fragment 布局的加载
 
-### Weather Infos By City
+## Weather Infos By City
 
 Target: 
 1. 获取指定的城市信息
@@ -97,3 +97,26 @@ Target:
 3. ui/place/PlaceViewModel: 面向 UI 的数据处理接口
 4. ui/place/PlaceAdapter: UI 上的逻辑处理，持久化选中的城市信息
 5. ui/place/PlaceFragment: 页面展示的逻辑处理，如果检测到有本地化的城市信息则读取并跳转 activity
+
+## Refresh Weather Info
+
+使用下拉刷新控件实现 SwipeRefreshLayout
+
+### UI Layer
+
+1. layout/activity_weather.xml: 添加下拉控件 SwipeRefreshLayout
+2. ui/weather/weather_activity: 书写逻辑
+
+## Change City
+
+使用滑动菜单布局城市索引 Fragment
+
+![](https://raw.githubusercontent.com/Coming98/pictures/main/202209181157938.png)
+
+### UI Layer
+
+1. layout/now.xml: 添加触发滑动菜单的显示交互按钮
+2. layout/activity_weather.xml: 加入滑动菜单
+3. ui/weather/weather_activity: 书写逻辑
+4. ui/place/PlaceFragment: 完善 PlaceFragment 的跳转逻辑
+5. ui/place/PlaceAdapter: 完善 PlaceAdapter 的选定城市跳转逻辑
